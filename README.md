@@ -5,9 +5,11 @@ This repository is a set of small examples that show how to use the official [Te
 The official Terraform documentation can be found [here](https://www.terraform.io/docs/github-actions/getting-started/); however, it may be out of date in terms of the HCL syntax used throughout the examples.
 
 ### Setting up secrets
-In order to run `terraform plan` or `terraform apply`, you will potentially need to setup credentials to allow for the workflow to properly communicate with any cloud providers you may be using. In this example, since I am setting up an AWS provider and creating an EC2 instance, I need to passthrough AWS credentials.
+In order to run `terraform plan` or `terraform apply`, you will potentially need to setup credentials to allow for the workflow to properly communicate with any cloud providers you may be using. In this example, since I am setting up an AWS provider and creating an EC2 instance, I need to pass through AWS credentials.
 
 You provision these per-repository. You can setup these secrets by going to the repository Settings > Secrets > Add new secret.
+
+![Adding secrets](assets/secrets.png)
 
 Once created, you can reference those secrets from the workflow by using `${{ secrets.AWS_ACCESS_KEY_ID }}`.
 
@@ -19,9 +21,10 @@ The example workflow definition can be found in [.github/workflows/terraform.yml
 ## Actions
 
 ### `terraform fmt`
+![terraform fmt](assets/format.png)
 
 ### `terraform plan`
+![terraform plan](assets/plan.png)
 
 ### `terraform validate`
-
-### `terraform apply`
+![terraform validate](assets/validate.png)
