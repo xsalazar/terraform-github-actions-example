@@ -21,13 +21,13 @@ The example workflow definition can be found in [.github/workflows/terraform.yml
 ## Actions
 
 ### `terraform fmt`
-You can see an example of this command being run in [this pull request](https://github.com/xsalazar/terraform-github-actions-example/pull/1).
+You can see an example of this command being run in [this pull request](https://github.com/xsalazar/terraform-github-actions-example/pull/4).
 ![terraform fmt](assets/format.png)
 
-### `terraform plan`
-You can see an example of this command being run in [this pull request](https://github.com/xsalazar/terraform-github-actions-example/pull/2). The plan output is too long to include here, but you can expand the output in the original comment.
-![terraform plan](assets/plan.png)
-
 ### `terraform validate`
-You can see an example of this command being run in [this pull request](https://github.com/xsalazar/terraform-github-actions-example/pull/3).
+You can see an example of this command being run in [this pull request](https://github.com/xsalazar/terraform-github-actions-example/pull/5).
 ![terraform validate](assets/validate.png)
+
+### `terraform plan`
+You can see an example of this command being run in [this pull request](https://github.com/xsalazar/terraform-github-actions-example/pull/6). The plan output is too long to include here, but you can expand the output in the original comment.
+![terraform plan](assets/plan.png)
