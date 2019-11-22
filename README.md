@@ -2,7 +2,7 @@
 This repository is a set of small examples that show how to use the official [Terraform GitHub Actions](https://github.com/hashicorp/terraform-github-actions) to run on your personal repositories.
 
 ## Getting Started
-The official Terraform documentation can be found [here](https://www.terraform.io/docs/github-actions/getting-started/); however, it may be out of date in terms of the HCL syntax used throughout the examples.
+The official Terraform documentation can be found [here](https://www.terraform.io/docs/github-actions/index.html)
 
 ### Setting up secrets
 In order to run `terraform plan` or `terraform apply`, you will potentially need to setup credentials to allow for the workflow to properly communicate with any cloud providers you may be using. In this example, since I am setting up an AWS provider and creating an EC2 instance, I need to pass through AWS credentials.
