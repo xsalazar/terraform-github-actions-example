@@ -16,7 +16,7 @@ Once created, you can reference those secrets from the workflow by using `${{ se
 It is worth noting that `GITHUB_TOKEN` is [automatically provided](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/authenticating-with-the-github_token) to workflows, and you do not need to manually set this up.
 
 ### YAML Syntax
-The example workflow definition can be found in [.github/workflows/terraform.yml](.github/workflows/terraform.yml). The HCL-syntax support that was originally released with GitHub Actions has been deprecated, so all workflows or samples written in HCL either need to be [converted or rewritten](https://help.github.com/en/github/automating-your-workflow-with-github-actions/about-github-actions#migrating-github-actions-from-hcl-to-yaml-syntax).
+The example workflow definition can be found in [.github/workflows/terraform.yml](.github/workflows/terraform.yml). The HCL-syntax support that was originally released with GitHub Actions has been deprecated, so all workflows or samples written in HCL either need to be [converted or rewritten](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/metadata-syntax-for-github-actions).
 
 ## Actions
 
