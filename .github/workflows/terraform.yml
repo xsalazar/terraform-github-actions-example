@@ -56,25 +56,33 @@ jobs:
           ### Terraform Format and Style 🎨: \`${{ steps.fmt.outcome }}\`
           <details><summary>Output</summary>
           \`terraform fmt\`
-          ${ CODE_BLOCK } ${{ steps.fmt.ouputs.stdout }} ${ CODE_BLOCK }
+          ${ CODE_BLOCK }
+          ${{ steps.fmt.ouputs.stdout }}
+          ${ CODE_BLOCK }
           </details>
 
           ### Terraform Initialization ⚙️:  \`${{ steps.init.outcome }}\`
           <details><summary>Output</summary>
           \`terraform init\`
-          ${ CODE_BLOCK } ${{ steps.init.outputs.stderr }} ${ CODE_BLOCK }
+          ${ CODE_BLOCK }
+          ${{ steps.init.outputs.stderr }}
+          ${ CODE_BLOCK }
           </details>
 
           ### Terraform Validation 🤖: \`${{ steps.validate.outcome }}\`
           <details><summary>Output</summary>
           \`terraform validate\`
-          ${ CODE_BLOCK } ${{ steps.validate.outputs.stderr }} ${ CODE_BLOCK }
+          ${ CODE_BLOCK }
+          ${{ steps.validate.outputs.stderr }}
+          ${ CODE_BLOCK }
           </details>
 
           ### Terraform Plan 📖: \`${{ steps.plan.outcome }}\`
           <details><summary>Output</summary>
           \`terraform plan\`
-          ${ CODE_BLOCK }${ process.env.PLAN }${ CODE_BLOCK }
+          ${ CODE_BLOCK }
+          ${ process.env.PLAN }
+          ${ CODE_BLOCK }
           </details>
 
           *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`, Working Directory: \`${{ env.tf_actions_working_dir }}\`, Workflow: \`${{ github.workflow }}\`*`;
