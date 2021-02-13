@@ -61,10 +61,10 @@ jobs:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         script: |
           const CODE_BLOCK = '```';
-          const fmt_result = ${{ steps.fmt.outcome }} === 'failure' ? ':x:' : ':heavy_check_mark:';
-          const init_result = ${{ steps.init.outcome }} === 'failure' ? ':x:' : ':heavy_check_mark:';
-          const validate_result = ${{ steps.validate.outcome }} === 'failure' ? ':x:' : ':heavy_check_mark:';
-          const plan_result = ${{ steps.plan.outcome }} === 'failure' ? ':x:' : ':heavy_check_mark:';
+          const fmt_result = '${{ steps.fmt.outcome }}' === 'failure' ? ':x:' : ':heavy_check_mark:';
+          const init_result = '${{ steps.init.outcome }}' === 'failure' ? ':x:' : ':heavy_check_mark:';
+          const validate_result = '${{ steps.validate.outcome }}' === 'failure' ? ':x:' : ':heavy_check_mark:';
+          const plan_result = '${{ steps.plan.outcome }}' === 'failure' ? ':x:' : ':heavy_check_mark:';
 
           const output = `
           ### ${ fmt_result } Terraform Format and Style 🎨
