@@ -64,59 +64,53 @@ jobs:
           const output = `
           ### Terraform Format and Style 🎨: \`${{ steps.fmt.outcome }}\`
           <details><summary>Logs</summary>
-            <details><summary>Output</summary>
-            ${ CODE_BLOCK }
-            # terraform fmt
-            ${ process.env.format_out }
-            ${ CODE_BLOCK }
-            </details>
+          Output
 
-            <details><summary>Errors</summary>
-            ${ CODE_BLOCK }
-            # terraform fmt
-            ${ process.env.format_err }
-            ${ CODE_BLOCK }
-            </details>
+          ${ CODE_BLOCK }
+          ${ process.env.format_out }
+          ${ CODE_BLOCK }
+
+          Errors
+
+          ${ CODE_BLOCK }
+          ${ process.env.format_err }
+          ${ CODE_BLOCK }
           </details> <!-- End Format Logs -->
 
           ### Terraform Initialization ⚙️:  \`${{ steps.init.outcome }}\`
           <details><summary>Logs</summary>
-            <details><summary>Output</summary>
-            ${ CODE_BLOCK }
-            # terraform init
-            ${ process.env.init_out }
-            ${ CODE_BLOCK }
-            </details>
+          Output
 
-            <details><summary>Errors</summary>
-            ${ CODE_BLOCK }
-            # terraform init
-            ${ process.env.init_err }
-            ${ CODE_BLOCK }
-            </details>
+          ${ CODE_BLOCK }
+          ${ process.env.init_out }
+          ${ CODE_BLOCK }
+
+          Errors
+
+          ${ CODE_BLOCK }
+          ${ process.env.init_err }
+          ${ CODE_BLOCK }
           </details> <!-- End Init Logs -->
 
           ### Terraform Validation 🤖: \`${{ steps.validate.outcome }}\`
           <details><summary>Logs</summary>
-            <details><summary>Output</summary>
-            ${ CODE_BLOCK }
-            # terraform validate
-            ${ process.env.validate_out }
-            ${ CODE_BLOCK }
-            </details>
+          Output
 
-            <details><summary>Errors</summary>
-            ${ CODE_BLOCK }
-            # terraform validate
-            ${ process.env.validate_err }
-            ${ CODE_BLOCK }
-            </details>
+          ${ CODE_BLOCK }
+          ${ process.env.validate_out }
+          ${ CODE_BLOCK }
+
+          Errors
+
+          ${ CODE_BLOCK }
+          ${ process.env.validate_err }
+          ${ CODE_BLOCK }
           </details> <!-- End Validate Logs -->
 
           ### Terraform Plan 📖: \`${{ steps.plan.outcome }}\`
           <details><summary>Logs</summary>
+
           ${ CODE_BLOCK }terraform
-          # terraform plan
           ${ process.env.plan }
           ${ CODE_BLOCK }
           </details>
