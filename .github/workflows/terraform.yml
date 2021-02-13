@@ -51,37 +51,70 @@ jobs:
       if: github.event_name == 'pull_request'
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
-        plan: "terraform\n${{ steps.plan.outputs.stdout }}"
+        format_out: ${{ steps.fmt.outputs.stdout }}
+        format_err: ${{ steps.fmt.outputs.stderr }}
+        init_out: ${{ steps.init.outputs.stdout }}
+        init_err: ${{ steps.init.outputs.stderr }}
+        validate_out: ${{ steps.validate.outputs.stdout }}
+        validate_err: ${{ steps.validate.outputs.stderr }}
+        plan: "${{ steps.plan.outputs.stdout }}"
         script: |
           const CODE_BLOCK = '```';
           const output = `
           ### Terraform Format and Style 🎨: \`${{ steps.fmt.outcome }}\`
-          <details><summary>Output</summary>
-          ${ CODE_BLOCK }
-          # terraform fmt
-          ${{ steps.fmt.ouputs.stdout }}
-          ${ CODE_BLOCK }
-          </details>
+          <details><summary>Logs</summary>
+            <details><summary>Output</summary>
+            ${ CODE_BLOCK }
+            # terraform fmt
+            ${ process.env.format_out }
+            ${ CODE_BLOCK }
+            </details>
+
+            <details><summary>Errors</summary>
+            ${ CODE_BLOCK }
+            # terraform fmt
+            ${ process.env.format_err }
+            ${ CODE_BLOCK }
+            </details>
+          </details> <!-- End Format Logs -->
 
           ### Terraform Initialization ⚙️:  \`${{ steps.init.outcome }}\`
-          <details><summary>Output</summary>
-          ${ CODE_BLOCK }
-          # terraform init
-          ${{ steps.init.outputs.stderr }}
-          ${ CODE_BLOCK }
-          </details>
+          <details><summary>Logs</summary>
+            <details><summary>Output</summary>
+            ${ CODE_BLOCK }
+            # terraform init
+            ${ process.env.init_out }
+            ${ CODE_BLOCK }
+            </details>
+
+            <details><summary>Errors</summary>
+            ${ CODE_BLOCK }
+            # terraform init
+            ${ process.env.init_err }
+            ${ CODE_BLOCK }
+            </details>
+          </details> <!-- End Init Logs -->
 
           ### Terraform Validation 🤖: \`${{ steps.validate.outcome }}\`
-          <details><summary>Output</summary>
-          ${ CODE_BLOCK }
-          # terraform validate
-          ${{ steps.validate.outputs.stderr }}
-          ${ CODE_BLOCK }
-          </details>
+          <details><summary>Logs</summary>
+            <details><summary>Output</summary>
+            ${ CODE_BLOCK }
+            # terraform validate
+            ${ process.env.validate_out }
+            ${ CODE_BLOCK }
+            </details>
+
+            <details><summary>Errors</summary>
+            ${ CODE_BLOCK }
+            # terraform validate
+            ${ process.env.validate_err }
+            ${ CODE_BLOCK }
+            </details>
+          </details> <!-- End Validate Logs -->
 
           ### Terraform Plan 📖: \`${{ steps.plan.outcome }}\`
-          <details><summary>Output</summary>
-          ${ CODE_BLOCK }
+          <details><summary>Logs</summary>
+          ${ CODE_BLOCK }terraform
           # terraform plan
           ${ process.env.PLAN }
           ${ CODE_BLOCK }
