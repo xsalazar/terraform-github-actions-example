@@ -34,10 +34,12 @@ jobs:
     - name: Terraform Init
       id: init
       run: terraform init
+      continue-on-error: true
 
     - name: Terraform Validate
       id: validate
       run: terraform validate -no-color
+      continue-on-error: true
 
     - name: Terraform Plan
       id: plan
@@ -55,32 +57,32 @@ jobs:
           const output = `
           ### Terraform Format and Style 🎨: \`${{ steps.fmt.outcome }}\`
           <details><summary>Output</summary>
-          \`terraform fmt\`
           ${ CODE_BLOCK }
+          # terraform fmt
           ${{ steps.fmt.ouputs.stdout }}
           ${ CODE_BLOCK }
           </details>
 
           ### Terraform Initialization ⚙️:  \`${{ steps.init.outcome }}\`
           <details><summary>Output</summary>
-          \`terraform init\`
           ${ CODE_BLOCK }
+          # terraform init
           ${{ steps.init.outputs.stderr }}
           ${ CODE_BLOCK }
           </details>
 
           ### Terraform Validation 🤖: \`${{ steps.validate.outcome }}\`
           <details><summary>Output</summary>
-          \`terraform validate\`
           ${ CODE_BLOCK }
+          # terraform validate
           ${{ steps.validate.outputs.stderr }}
           ${ CODE_BLOCK }
           </details>
 
           ### Terraform Plan 📖: \`${{ steps.plan.outcome }}\`
           <details><summary>Output</summary>
-          \`terraform plan\`
           ${ CODE_BLOCK }
+          # terraform plan
           ${ process.env.PLAN }
           ${ CODE_BLOCK }
           </details>
