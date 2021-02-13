@@ -61,12 +61,17 @@ jobs:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         script: |
           const CODE_BLOCK = '```';
+          const fmt_result = ${{ steps.fmt.outcome }} === 'failure' ? ':x:' : ':heavy_check_mark:';
+          const init_result = ${{ steps.init.outcome }} === 'failure' ? ':x:' : ':heavy_check_mark:';
+          const validate_result = ${{ steps.validate.outcome }} === 'failure' ? ':x:' : ':heavy_check_mark:';
+          const plan_result = ${{ steps.plan.outcome }} === 'failure' ? ':x:' : ':heavy_check_mark:';
+
           const output = `
-          ### Terraform Format and Style 🎨: \`${{ steps.fmt.outcome }}\`
+          ### ${ fmt_result } Terraform Format and Style 🎨
           <details><summary>Logs</summary>
           Output
 
-          ${ CODE_BLOCK }
+          ${ CODE_BLOCK }diff
           ${ process.env.format_out }
           ${ CODE_BLOCK }
 
@@ -77,7 +82,7 @@ jobs:
           ${ CODE_BLOCK }
           </details> <!-- End Format Logs -->
 
-          ### Terraform Initialization ⚙️:  \`${{ steps.init.outcome }}\`
+          ### ${ init_result } Terraform Initialization ⚙️
           <details><summary>Logs</summary>
           Output
 
@@ -92,7 +97,7 @@ jobs:
           ${ CODE_BLOCK }
           </details> <!-- End Init Logs -->
 
-          ### Terraform Validation 🤖: \`${{ steps.validate.outcome }}\`
+          ### ${ validate_result } Terraform Validation 🤖
           <details><summary>Logs</summary>
           Output
 
@@ -107,7 +112,7 @@ jobs:
           ${ CODE_BLOCK }
           </details> <!-- End Validate Logs -->
 
-          ### Terraform Plan 📖: \`${{ steps.plan.outcome }}\`
+          ### ${ plan_result } Terraform Plan 📖
           <details><summary>Logs</summary>
 
           ${ CODE_BLOCK }terraform
