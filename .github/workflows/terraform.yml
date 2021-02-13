@@ -28,7 +28,7 @@ jobs:
 
     - name: Terraform Fmt
       id: fmt
-      run: terraform fmt -check
+      run: terraform fmt -check -diff
       continue-on-error: true
 
     - name: Terraform Init
@@ -49,26 +49,32 @@ jobs:
       if: github.event_name == 'pull_request'
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
+        plan: "terraform\n${{ steps.plan.outputs.stdout }}"
         script: |
           const CODE_BLOCK = '```';
           const output = `
-          ### Terraform Format and Style 🎨: **${{ steps.fmt.outcome }}**
+          ### Terraform Format and Style 🎨: \`${{ steps.fmt.outcome }}\`
           <details><summary>Output</summary>
+          \`terraform fmt\`
           ${ CODE_BLOCK } ${{ steps.fmt.ouputs.stdout }} ${ CODE_BLOCK }
           </details>
 
-          ### Terraform Initialization ⚙️:  **${{ steps.init.outcome }}**
+          ### Terraform Initialization ⚙️:  \`${{ steps.init.outcome }}\`
           <details><summary>Output</summary>
+          \`terraform init\`
           ${ CODE_BLOCK } ${{ steps.init.outputs.stderr }} ${ CODE_BLOCK }
           </details>
 
-          ### Terraform Validation 🤖: **${{ steps.validate.outcome }}**
+          ### Terraform Validation 🤖: \`${{ steps.validate.outcome }}\`
           <details><summary>Output</summary>
+          \`terraform validate\`
           ${ CODE_BLOCK } ${{ steps.validate.outputs.stderr }} ${ CODE_BLOCK }
+          </details>
 
-          ### Terraform Plan 📖: **${{ steps.plan.outcome }}**
+          ### Terraform Plan 📖: \`${{ steps.plan.outcome }}\`
           <details><summary>Output</summary>
-          ${ CODE_BLOCK }terraform\n${{ steps.plan.outputs.stdout }} ${ CODE_BLOCK }
+          \`terraform plan\`
+          ${ CODE_BLOCK }${ process.env.PLAN }${ CODE_BLOCK }
           </details>
 
           *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`, Working Directory: \`${{ env.tf_actions_working_dir }}\`, Workflow: \`${{ github.workflow }}\`*`;
